@@ -43,16 +43,16 @@
 
 (defun jwt-base64-encode (str)
   "Base64 encode a string."
-  (base64-encode-string str))
+  (base64url-encode-string str t))
 
 (defun jwt-base64-decode (str)
   "Base64 decode a string."
-  (base64-decode-string str))
+  (base64-decode-string str t))
 
 (defun jwt--sign(algorithm secret token)
   (cond
    ((equal "HS256" algorithm)
-    (hmac 'sha256 secret token))
+    (hmac 'sha256 secret token t))
    (t
     (error "Unsupported algorithm %s" algorithm))))
 
