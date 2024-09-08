@@ -54,7 +54,7 @@
    ((equal "HS256" algorithm)
     (hmac 'sha256 secret token))
    (t
-    (error "Unsupported algorightm %s" algorithm))))
+    (error "Unsupported algorithm %s" algorithm))))
 
 (defun jwt-encode (header payload secret algorithm)
   "Encode a JWT token."
