@@ -30,7 +30,7 @@
 ;; (let ((secret "secret")
 ;;       (header '(("alg" . "HS256") ("typ" . "JWT")))
 ;;       (payload '(("sub" . "1234567890") ("name" . "John Doe") ("iat" . 1516239022))))
-;;   (let ((encoded-token (jwt-encode header payload secret 'HS256)))
+;;   (let ((encoded-token (jwt-encode header payload secret "HS256")))
 ;;     (message "Encoded JWT: %s" encoded-token)
 ;;     (let ((decoded (jwt-decode encoded-token secret)))
 ;;       (when decoded
@@ -64,7 +64,7 @@
          (encoded-header (jwt-base64-encode header-json))
          (encoded-payload (jwt-base64-encode payload-json))
          (encoded-token (concat encoded-header "." encoded-payload))
-         (signature (jwt--sign "HS256" secret encoded-token)))
+         (signature (jwt--sign algorithm secret encoded-token)))
     (concat encoded-token "." (jwt-base64-encode signature))))
 
 (defun jwt-decode (token secret)
